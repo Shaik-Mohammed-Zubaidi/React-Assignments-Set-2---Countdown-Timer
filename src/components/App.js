@@ -35,7 +35,7 @@ const App = () => {
       setRemainingTime((oldRemainingTime) => {
         if (oldRemainingTime === 0) {
           clearInterval(id);
-          return;
+          return 0;
         }
         const newRemainingTime = oldRemainingTime - 1;
         return newRemainingTime;
