@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/App.css";
 
 const App = () => {
-  const [remainingTime, setRemainingTime] = useState(0);
+  const [remainingTime, setRemainingTime] = useState("");
   const [inputTime, setInputTime] = useState("");
   // let timerId = 0;
   const [timerId, setTimerId] = useState(0);
