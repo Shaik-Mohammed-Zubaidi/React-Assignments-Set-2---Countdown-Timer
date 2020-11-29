@@ -16,11 +16,12 @@ const App = () => {
       setRemainingTime(0);
       return;
     }
-    if (event.keyCode !== 13) {
-      return;
-    }
+
     if (inputTime.match(/^[a-zA-Z]+$/)) {
       setRemainingTime(0);
+      return;
+    }
+    if (event.keyCode !== 13) {
       return;
     }
 
