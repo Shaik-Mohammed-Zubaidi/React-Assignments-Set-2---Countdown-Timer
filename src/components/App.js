@@ -16,8 +16,11 @@ const App = () => {
       setRemainingTime(0);
       return;
     }
-
-    if (inputTime.match(/^[a-zA-Z]+$/)) {
+    if (isNaN(inputTime)) {
+      setRemainingTime(0);
+      return;
+    }
+    if (Number(inputTime) === 0) {
       setRemainingTime(0);
       return;
     }
