@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import "../styles/App.css";
 
 const App = () => {
-  const [remainingTime, setRemainingTime] = useState("");
-  const [inputTime, setInputTime] = useState("");
-  // let timerId = 0;
-  const [timerId, setTimerId] = useState(0);
-  const [timerStarted, setTimerStarted] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(0);
 
   useEffect(() => {
-    setRemainingTime(remainingTime);
-    setTimerId(timerId);
-  }, [remainingTime, timerId]);
+    const id = setInterval(startTimer, 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [remainingTime]);
   const handleStart = (event) => {
+    let inputTime = document.getElementById("timeCount").value;
+    if (inputTime.length === 0) {
+      setRemainingTime(0);
+      return;
+    }
     if (event.keyCode !== 13) {
       return;
     }
@@ -20,28 +23,15 @@ const App = () => {
       setRemainingTime(0);
       return;
     }
-    if (timerStarted) {
-      console.log("inside started " + timerId);
-      clearInterval(timerId);
-      startTimer();
-      return;
-    }
-    setTimerStarted(true);
+
+    setRemainingTime(Math.floor(Number(inputTime)));
     startTimer();
   };
   const startTimer = () => {
-    setRemainingTime(Math.floor(inputTime));
-    let id = setInterval(() => {
-      setRemainingTime((oldRemainingTime) => {
-        if (oldRemainingTime === 0) {
-          clearInterval(id);
-          return 0;
-        }
-        const newRemainingTime = oldRemainingTime - 1;
-        return newRemainingTime;
-      });
-    }, 1000);
-    setTimerId(id);
+    if (remainingTime === 0) {
+      return;
+    }
+    setRemainingTime(remainingTime - 1);
   };
 
   return (
@@ -49,13 +39,7 @@ const App = () => {
       <div id="whole-center">
         <h1>
           Reverse countdown for
-          <input
-            id="timeCount"
-            value={inputTime}
-            onKeyDown={handleStart}
-            onChange={(event) => setInputTime(event.target.value)}
-          />{" "}
-          sec.
+          <input id="timeCount" onKeyDown={handleStart} /> sec.
         </h1>
       </div>
       <div id="current-time">{remainingTime}</div>
