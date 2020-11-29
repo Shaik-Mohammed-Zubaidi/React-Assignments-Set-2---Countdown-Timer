@@ -29,7 +29,6 @@ const App = () => {
     }
 
     setRemainingTime(Number(inputTime));
-    startTimer();
   };
   const startTimer = () => {
     if (remainingTime === 0 || remainingTime < 0) {
