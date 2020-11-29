@@ -25,7 +25,7 @@ const App = () => {
       return;
     }
 
-    setRemainingTime(Math.floor(Number(inputTime)));
+    setRemainingTime(Number(inputTime));
     startTimer();
   };
   const startTimer = () => {
