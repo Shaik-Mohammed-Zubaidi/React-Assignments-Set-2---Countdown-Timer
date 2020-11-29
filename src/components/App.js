@@ -29,7 +29,7 @@ const App = () => {
     startTimer();
   };
   const startTimer = () => {
-    if (remainingTime === 0) {
+    if (remainingTime === 0 || remainingTime < 0) {
       return;
     }
     setRemainingTime(remainingTime - 1);
